@@ -1,0 +1,32 @@
+{
+  "name": "myblogger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikeytsou/myBlogger.git"
+  },
+  "author": "Mike Tsou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mikeytsou/myBlogger/issues"
+  },
+  "homepage": "https://github.com/mikeytsou/myBlogger#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
+    "express-sanitizer": "^1.0.2",
+    "method-override": "^2.3.9",
+    "moment": "^2.18.1",
+    "mongoose": "^4.10.8"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.19.0"
+  }
+}
