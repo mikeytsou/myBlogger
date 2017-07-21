@@ -1,6 +1,7 @@
 const express = require("express");
-      router = express.Router();
       path = require("path");
+      middleware = require("../middleware/index");
+      router = express.Router();
 // MODELS
       Post = require("../models/post");
 
@@ -21,12 +22,12 @@ router.get("/posts", function(req, res) {
 });
 
 // NEW
-router.get("/posts/new", function(req, res) {
+router.get("/posts/new", middleware.isLoggedIn, function(req, res) {
   res.render("posts/new");
 });
 
 // CREATE
-router.post("/posts", function(req, res) {
+router.post("/posts", middleware.isLoggedIn, function(req, res) {
   req.body.post.image = req.sanitize(req.body.post.image);
   req.body.post.title = req.sanitize(req.body.post.title);
   req.body.post.body = req.sanitize(req.body.post.body);
@@ -67,7 +68,7 @@ router.get("/posts/:id", function(req, res) {
 });
 
 // EDIT
-router.get("/posts/:id/edit", function(req, res) {
+router.get("/posts/:id/edit", middleware.isLoggedIn, function(req, res) {
   Post.findById(req.params.id, function(err, foundPost) {
     if (err) {
       console.log(err);
@@ -82,7 +83,7 @@ router.get("/posts/:id/edit", function(req, res) {
 
 
 // DESTROY
-router.delete("/posts/:id", function(req, res) {
+router.delete("/posts/:id", middleware.isLoggedIn, function(req, res) {
   Post.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
       res.redirect("/");
