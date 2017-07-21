@@ -1,10 +1,14 @@
 const express = require("express");
       mongoose = require("mongoose");
       bodyParser = require("body-parser");
+      session = require("express-session");
+      passport = require("passport");
+      LocalStrategy = require("passport-local");
       methodOverride = require("method-override");
       expressSanitizer = require("express-sanitizer");
       app = express();
 // ROUTES
+      userRoutes = require("./routes/users")
       postRoutes = require("./routes/posts");
 
 // APP CONFIG
@@ -15,7 +19,26 @@ app.use(methodOverride("_method"));
 app.use(expressSanitizer());
 app.set("view engine", "ejs");
 
+// PASSPORT CONFIG
+app.use(session({
+  secret: "THIS IS A SECRET",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+// HELPERS
+app.use(function(req, res, next) {
+  res.locals.currentUser = req.user;
+  next();
+});
+
 // ROUTES
+app.use(userRoutes);
 app.use(postRoutes);
 
 // MISSING ROUTE
