@@ -54,4 +54,16 @@ router.post("/posts", function(req, res) {
   });
 });
 
+// EDIT
+router.get("/posts/:id/edit", function(req, res) {
+  Post.findById(req.params.id, function(err, foundPost) {
+    if (err) {
+      console.log(err);
+      res.redirect("/");
+    } else {
+      res.render("posts/edit", {post: foundPost});
+    }
+  });
+});
+
 module.exports = router;

@@ -12,7 +12,7 @@
           <a href="" class="header"><%= post.title %></a>
 
           <div class="meta">
-            <span><%= post.createdAt.toDateString() %></span>
+            <span><%= post.createdAt.toDateString() %> by <%= post.author.username %></span>
           </div>
 
           <div class="description" id="post-body">
