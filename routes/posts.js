@@ -30,9 +30,11 @@ router.get("/posts/new", middleware.isLoggedIn, function(req, res) {
 router.post("/posts", middleware.isLoggedIn, function(req, res) {
   req.body.post.image = req.sanitize(req.body.post.image);
   req.body.post.title = req.sanitize(req.body.post.title);
+  req.body.post.description = req.sanitize(req.body.post.description);
   req.body.post.body = req.sanitize(req.body.post.body);
   const image = req.body.post.image;
   const title = req.body.post.title;
+  const description = req.body.post.description;
   const body = req.body.post.body;
   const author = {
     id: req.user._id,
@@ -41,6 +43,7 @@ router.post("/posts", middleware.isLoggedIn, function(req, res) {
   const newPost = {
     image: image,
     title: title,
+    description: description,
     body: body,
     author: author
   }

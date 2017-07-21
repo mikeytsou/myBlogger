@@ -6,10 +6,11 @@ $(document).ready(function() {
 const tinyMCE = function() {
   tinymce.init({
     selector: 'textarea',
-    plugins: ['preview link image lists'],
+    plugins: ['preview link image lists textcolor colorpicker hr codesample'],
+    toolbar: 'undo redo | styleselect | fontsizeselect | indent outdent | bullist numlist hr | forecolor backcolor | blockquote codesample | link image | removeformat | preview',
     menubar: false,
-    branding: false,
-    forced_root_block: ""
+    branding: false
+    // forced_root_block: ""
   });
 }
 
