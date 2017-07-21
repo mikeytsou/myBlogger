@@ -14,7 +14,16 @@
 <body>
   <div class="ui stackable menu fixed">
     <a href="/" class="item">myBlogger</a>
-    <a href="/posts/new" class="item" id="new-post-button">New Post</a>
+    <% if (!currentUser) { -%>
+      <a href="/users/new" class="item">Register</a>
+      <a href="/sessions/new" class="item">Log In</a>
+    <% } else { -%>
+      <a href="/users/<%= currentUser.id %>" class="item"><%= currentUser.username %></a>
+      <a href="/posts/new" class="item">New Post</a>
+      <div class="right menu">
+        <a href="/logout" class="item">Log Out</a>
+      </div>
+    <% } -%>
   </div>
 
   <div class="ui main container" id="main-container">

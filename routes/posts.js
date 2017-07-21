@@ -27,14 +27,29 @@ router.get("/posts/new", function(req, res) {
 
 // CREATE
 router.post("/posts", function(req, res) {
-  req.body.entry.body = req.sanitize(req.body.entry.body);
-  Post.create(req.body.entry, function(err, newPost) {
+  req.body.post.image = req.sanitize(req.body.post.image);
+  req.body.post.title = req.sanitize(req.body.post.title);
+  req.body.post.body = req.sanitize(req.body.post.body);
+  const image = req.body.post.image;
+  const title = req.body.post.title;
+  const body = req.body.post.body;
+  const author = {
+    id: req.user._id,
+    username: req.user.username
+  }
+  const newPost = {
+    image: image,
+    title: title,
+    body: body,
+    author: author
+  }
+  Post.create(newPost, function(err, createdPost) {
     if (err) {
       console.log(err);
       res.redirect("/posts/new");
     } else {
       console.log(newPost);
-      res.redirect("/posts");
+      res.redirect("/");
     }
   });
 });

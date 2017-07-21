@@ -1,0 +1,40 @@
+<% include ../partials/header %>
+
+<div class="ui main text container">
+  <form action="/users" method="POST" class="ui form" id="register-form">
+    <h3 class="ui dividing header">Register</h3>
+      <div class="field">
+        <label>Name:</label>
+
+        <div class="two fields">
+          <div class="field">
+            <input type="text" name="firstName" placeholder="first name">
+          </div>
+
+          <div class="field">
+            <input type="text" name="lastName" placeholder="last name">
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Picture:</label>
+        <input type="text" name="picture" placeholder="picture">
+      </div>
+
+      <div class="two fields">
+        <div class="field">
+          <label>Username:</label>
+          <input type="text" name="username" placeholder="username">
+        </div>
+
+        <div class="field">
+          <label>Password:</label>
+          <input type="password" name="password" placeholder="password">
+        </div>
+      </div>
+    <input class="ui inverted green button mini" type="submit" >
+  </form>
+</div>
+
+<% include ../partials/footer %>
