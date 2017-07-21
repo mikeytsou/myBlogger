@@ -54,6 +54,18 @@ router.post("/posts", function(req, res) {
   });
 });
 
+// SHOW
+router.get("/posts/:id", function(req, res) {
+  Post.findById(req.params.id, function(err, foundPost) {
+    if (err) {
+      console.log(err);
+      res.redirect("/");
+    } else {
+      res.render("posts/show", {post: foundPost});
+    }
+  });
+});
+
 // EDIT
 router.get("/posts/:id/edit", function(req, res) {
   Post.findById(req.params.id, function(err, foundPost) {
@@ -62,6 +74,20 @@ router.get("/posts/:id/edit", function(req, res) {
       res.redirect("/");
     } else {
       res.render("posts/edit", {post: foundPost});
+    }
+  });
+});
+
+// UPDATE
+
+
+// DESTROY
+router.delete("/posts/:id", function(req, res) {
+  Post.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      res.redirect("/");
+    } else {
+      res.redirect("/");
     }
   });
 });
