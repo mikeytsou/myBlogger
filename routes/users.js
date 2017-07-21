@@ -27,9 +27,26 @@ router.post("/users", function(req, res) {
     passport.authenticate("local")(req, res, function() {
       // req.flash("success", `Hello ${fill this in}!`);
       res.redirect("/");
-    })
-  })
-})
+    });
+  });
+});
+
+// SHOW
+router.get("/users/:id", function(req, res) {
+  User.findById(req.params.id, function(err, foundUser) {
+    if (err) {
+      console.log(err);
+      res.redirect("/");
+    }
+    Post.find().where("author.id").equals(foundUser._id).exec(function(err, posts) {
+      if (err) {
+        console.log(err);
+        res.redirect("/");
+      }
+      res.render("users/show", {user: foundUser, posts: posts});
+    });
+  });
+});
 
 // NEW - session
 router.get("/sessions/new", function(req, res) {
@@ -50,5 +67,6 @@ router.get("/logout", function(req, res) {
   req.logout();
   res.redirect("/");
 });
+
 
 module.exports = router;
