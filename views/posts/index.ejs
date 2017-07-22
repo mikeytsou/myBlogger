@@ -1,31 +1,29 @@
 <% include ../partials/header %>
 
-<div class="ui top attached">
-  <div class="ui divided items">
-    <% posts.forEach(function(post) { %>
-      <div class="item">
-        <div class="image">
-          <img src="<%= post.image %>">
+<div class="ui divided very relaxed items">
+  <% posts.forEach(function(post) { %>
+    <div class="padded item">
+      <div class="image">
+        <img src="<%= post.image %>">
+      </div>
+
+      <div class="content">
+        <a href="" class="header"><%= post.title %></a>
+
+        <div class="meta">
+          <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
         </div>
 
-        <div class="content">
-          <a href="" class="header"><%= post.title %></a>
+        <div class="description">
+          <p><span><%= post.description.substring(0, 300) %>...</span></p>
+        </div>
 
-          <div class="meta">
-            <span><%= post.createdAt.toDateString() %></span>
-          </div>
-
-          <div class="description" id="post-body">
-            <p><span><%- post.body.substring(0, 150) %>...</span></p>
-          </div>
-
-          <div class="extra">
-            <a href="" class="ui floated inverted blue button mini">Read More</a>
-          </div>
+        <div class="extra">
+          <a href="/posts/<%= post._id %>" class="ui floated inverted blue button mini">Read More</a>
         </div>
       </div>
-    <% }) %>
-  </div>
+    </div>
+  <% }) %>
 </div>
 
 <% include ../partials/footer %>

@@ -1,25 +1,25 @@
 <% include ../partials/header %>
 
-<h1 class="ui huge header">New Post</h1>
-<form action="/posts" method="POST" class="ui form" id="new-post-form">
+<h1 class="ui huge header">Edit Post</h1>
+<form action="/posts/<%= post._id %>?_method=PUT" method="POST" class="ui form" id="edit-post-form">
   <div class="field">
     <label>Title:</label>
-    <input type="text" name="post[title]" placeholder="title">
+    <input type="text" name="post[title]" value="<%= post.title %>">
   </div>
 
   <div class="field">
     <label>Description:</label>
-    <input type="text" maxlength="300" name="post[description]" placeholder="description">
+    <input type="text" name="post[description]" value="<%= post.description %>">
   </div>
 
   <div class="field">
     <label>Image:</label>
-    <input type="text" name="post[image]" placeholder="image">
+    <input type="text" name="post[image]" value="<%= post.image %>">
   </div>
 
   <div class="field">
     <label>Body:</label>
-    <div class="editor"></div>
+    <div class="editor"><%- post.body %></div>
     <input type="hidden" name="post[body]">
   </div>
 
