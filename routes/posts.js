@@ -22,16 +22,16 @@ router.get("/posts", function(req, res) {
 });
 
 // NEW
-router.get("/posts/new", middleware.isLoggedIn, function(req, res) {
+router.get("/posts/new", function(req, res) {
   res.render("posts/new");
 });
 
 // CREATE
 router.post("/posts", middleware.isLoggedIn, function(req, res) {
-  req.body.post.image = req.sanitize(req.body.post.image);
-  req.body.post.title = req.sanitize(req.body.post.title);
-  req.body.post.description = req.sanitize(req.body.post.description);
-  req.body.post.body = req.sanitize(req.body.post.body);
+  // req.body.post.image = req.sanitize(req.body.post.image);
+  // req.body.post.title = req.sanitize(req.body.post.title);
+  // req.body.post.description = req.sanitize(req.body.post.description);
+  // req.body.post.body = req.sanitize(req.body.post.body);
   const image = req.body.post.image;
   const title = req.body.post.title;
   const description = req.body.post.description;
@@ -83,6 +83,21 @@ router.get("/posts/:id/edit", middleware.isLoggedIn, function(req, res) {
 });
 
 // UPDATE
+router.put("/posts/:id", function(req, res) {
+  // req.body.post.image = req.sanitize(req.body.post.image);
+  // req.body.post.title = req.sanitize(req.body.post.title);
+  // req.body.post.description = req.sanitize(req.body.post.description);
+  // req.body.post.body = req.sanitize(req.body.post.body);
+  Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, updatePost) {
+    if (err) {
+      console.log(err);
+      res.redirect(`/posts/${req.params.id}`);
+    } else {
+      console.log(updatePost);
+      res.redirect(`/posts/${req.params.id}`);
+    }
+  });
+});
 
 
 // DESTROY

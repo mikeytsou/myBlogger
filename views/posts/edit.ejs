@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 
 <h1 class="ui huge header">Edit Post</h1>
-<form action="/posts/<%= post._id %>?_method=PUT" method="POST" class="ui form">
+<form action="/posts/<%= post._id %>?_method=PUT" method="POST" class="ui form" id="edit-post-form">
   <div class="field">
     <label>Title:</label>
     <input type="text" name="post[title]" value="<%= post.title %>">
@@ -19,7 +19,8 @@
 
   <div class="field">
     <label>Body:</label>
-    <textarea name="post[body]"><%= post.body %></textarea>
+    <div class="editor"><%- post.body %></div>
+    <input type="hidden" name="post[body]">
   </div>
 
   <input class="ui inverted green button" type="submit" value="Post!">

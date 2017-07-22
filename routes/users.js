@@ -56,7 +56,7 @@ router.get("/sessions/new", function(req, res) {
 // CREATE - session
 router.post("/sessions", passport.authenticate("local", {
   failureRedirect: "/",
-  failureFlash: true
+  // failureFlash: true
 }), function(req, res) {
   // req.flash("success", `Hello ${fill this in}!`);
   res.redirect("/");
