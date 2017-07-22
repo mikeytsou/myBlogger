@@ -5,3 +5,20 @@
 #delete {
   display: inline;
 }
+
+
+
+
+
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+  .ui.grid {
+    margin: 0 !important;
+  }
+
+  .ui.vertical.menu.navbar {
+    margin-top: 27px !important;
+    width: 100%;
+  }
+}

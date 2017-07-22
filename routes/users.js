@@ -5,7 +5,6 @@ const express = require("express");
 // MODELS
       User = require("../models/user");
 
-
 // NEW - user
 router.get("/users/new", function(req, res) {
   res.render("users/new");

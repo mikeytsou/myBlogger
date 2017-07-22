@@ -13,19 +13,45 @@
   <title>Welcome to myBlogger</title>
 </head>
 <body>
-  <div class="ui stackable menu fixed">
-    <a href="/" class="item">myBlogger</a>
-    <% if (!currentUser) { -%>
-      <a href="/users/new" class="item">Register</a>
-      <a href="/sessions/new" class="item">Log In</a>
-    <% } else { -%>
-      <a href="/users/<%= currentUser.id %>" class="item"><%= currentUser.username %></a>
-      <a href="/posts/new" class="item">New Post</a>
-      <div class="right menu">
-        <a href="/logout" class="item">Log Out</a>
+  <div class="ui grid">
+    <div class="computer tablet only row">
+      <div class="ui fixed menu page grid">
+        <a href="/" class="item">myBlogger</a>
+        <% if (!currentUser) { -%>
+          <a href="/users/new" class="item">Register</a>
+          <a href="/sessions/new" class="item">Log In</a>
+        <% } else { -%>
+          <a href="/users/<%= currentUser.id %>" class="item"><%= currentUser.username %></a>
+          <a href="/posts/new" class="item">New Post</a>
+          <div class="right menu">
+            <a href="/logout" class="item">Log Out</a>
+          </div>
+        <% } -%>
       </div>
-    <% } -%>
+    </div>
+
+    <div class="mobile only row">
+      <div class="ui fixed navbar menu">
+        <a href="" class="item">myBlogger</a>
+          <div class="right menu open">
+            <a href="" class="menu item">
+                <i class="content icon"></i>
+            </a>
+          </div>
+      </div>
+
+      <div class="ui vertical attached navbar menu">
+        <% if (!currentUser) { -%>
+          <a href="/users/new" class="item">Register</a>
+          <a href="/sessions/new" class="item">Log In</a>
+        <% } else { -%>
+          <a href="/users/<%= currentUser.id %>" class="item"><%= currentUser.username %></a>
+          <a href="/posts/new" class="item">New Post</a>
+          <a href="/logout" class="item">Log Out</a>
+        <% } -%>
+      </div>
+    </div>
   </div>
 
-  <div class="ui main container" id="main-container">
+  <div class="ui main text container" id="main-container">
 
