@@ -1,8 +1,19 @@
 $(document).ready(function() {
+  mobileMenu();
   quillConfig();
   newPost();
   editPost();
 });
+
+// responsive menu for mobile
+const mobileMenu = function() {
+  const $hamburgerButton = $(".right.menu.open");
+  const $verticalMenu = $(".ui.vertical.menu");
+  $hamburgerButton.on("click", function(event) {
+    event.preventDefault();
+    $verticalMenu.toggle();
+  });
+}
 
 const quillConfig = function() {
   quill = new Quill(".editor", {
@@ -26,6 +37,7 @@ const quillConfig = function() {
     },
     theme: "snow"
   });
+  // this enables the handler for posting images via a url
   function imageURL() {
     var range = this.quill.getSelection();
     var value = prompt('What is the image URL');
