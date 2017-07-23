@@ -1,24 +1,26 @@
 <% include ../partials/header %>
 
-<div class="ui huge header"><%= post.title %></div>
-<div class="ui top attached">
-  <div class="item">
-    <img class="ui centered rounded image" src="<%= post.image %>">
+
+<div class="ui divided items">
+  <div class="padded item">
+    <div class="image">
+      <img src="<%= post.image %>">
+    </div>
 
     <div class="content">
-      <p><%= post.createdAt.toDateString() %> by <%= post.author.username %></p>
+      <div class="ui huge header"><%= post.title %></div>
+
+      <div class="meta">
+          <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
+      </div>
+
+      <div class="description">
+          <p><span><%= post.description %></span></p>
+      </div>
     </div>
-
-    <div class="description">
-      <div><%- post.body %></div>
-    </div>
-
-    <a class="ui inverted red button" href="/posts/<%= post._id %>/edit">Edit Post</a>
-
-    <form id="delete" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-      <button class="ui inverted red button">Delete</button>
-    </form>
   </div>
+
+  <div><%- post.body %></div>
 </div>
 
 <% include ../partials/footer %>
