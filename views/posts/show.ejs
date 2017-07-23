@@ -1,26 +1,36 @@
 <% include ../partials/header %>
 
 
-<div class="ui divided items">
+<div class="ui items">
   <div class="padded item">
     <div class="image">
-      <img src="<%= post.image %>">
+      <% if (post.image) { %>
+        <img id="image-border" src="<%= post.image %>">
+      <% } %>
     </div>
 
     <div class="content">
-      <div class="ui huge header"><%= post.title %></div>
+      <div class="header"><%= post.title %></div>
 
       <div class="meta">
-          <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
+        <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
+
+        <form id="delete" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+          <button class="ui inverted red mini right floated button">Delete</button>
+        </form>
+
+        <a class="ui inverted orange mini right floated button" href="/posts/<%= post._id %>/edit">Edit Post</a>
       </div>
 
       <div class="description">
-          <p><span><%= post.description %></span></p>
+        <p><span><%= post.description %></span></p>
       </div>
     </div>
   </div>
 
-  <div><%- post.body %></div>
+  <div id="post-body"><%- post.body %></div>
+
+
 </div>
 
 <% include ../partials/footer %>

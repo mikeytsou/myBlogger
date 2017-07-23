@@ -1,14 +1,16 @@
 <% include ../partials/header %>
 
-<div class="ui divided very relaxed items">
+<div class="ui very divided relaxed items">
   <% posts.forEach(function(post) { %>
     <div class="padded item">
       <div class="image">
-        <img src="<%= post.image %>">
+        <% if (post.image) { %>
+          <img id="image-border" src="<%= post.image %>">
+        <% } %>
       </div>
 
       <div class="content">
-        <p class="header"><%= post.title %></p>
+        <div class="header"><%= post.title %></div>
 
         <div class="meta">
           <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
@@ -19,7 +21,7 @@
         </div>
 
         <div class="extra">
-          <a href="/posts/<%= post._id %>" class="ui floated inverted blue button mini">Read More</a>
+          <a href="/posts/<%= post._id %>" class="ui floated inverted blue mini button">Read More</a>
         </div>
       </div>
     </div>
