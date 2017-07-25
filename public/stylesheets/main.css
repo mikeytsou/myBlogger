@@ -53,6 +53,19 @@ img {
   margin: auto;
 }
 
+#profile-header {
+  padding-bottom: 10px;
+}
+
+#profile-name {
+  margin: auto;
+}
+
+#profile-date {
+  vertical-align: text-bottom;
+  font-size: 0.7em;
+}
+
 /*#copyright {
   position: relative;
   top: 50%;
