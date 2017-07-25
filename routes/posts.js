@@ -60,7 +60,7 @@ router.post("/posts", middleware.isLoggedIn, function(req, res) {
 
 // SHOW
 router.get("/posts/:id", function(req, res) {
-  Post.findById(req.params.id, function(err, foundPost) {
+  Post.findById(req.params.id).populate("comments").exec(function(err, foundPost) {
     if (err) {
       console.log(err);
       res.redirect("/");

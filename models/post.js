@@ -25,10 +25,12 @@ const postSchema = new mongoose.Schema({
     },
     username: String
   },
-  comments: {
-    type: mongoose.Schema.Types.ObjectId,
-    red: "Comment"
-  }
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ]
 });
 
 module.exports = mongoose.model("Post", postSchema);

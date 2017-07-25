@@ -29,8 +29,43 @@
   </div>
 
   <div id="post-body"><%- post.body %></div>
+</div>
+
+<!--  -->
+
+<div class="ui minimal comments">
+  <h4 class="ui dividing header">Comments</h4>
+
+  <% post.comments.forEach(function(comment) { %>
+    <div class="comment">
+      <div class="avatar">
+        <img src="<%= comment.author.picture %>">
+      </div>
+
+      <div class="content">
+        <a href="/users/<%= comment.author.id %>" class="author"><%= comment.author.username %></a>
+
+        <div class="metadata">
+          <span class="date"><%= post.createdAt.toDateString() %></span>
+        </div>
+
+        <div class="text">
+          <p><%= comment.text %></p>
+        </div>
+      </div>
 
 
+    </div>
+  <% }) %>
+
+
+  <form action="/posts/<%= post._id %>/comments" method="POST" class="ui reply form">
+    <div class="field">
+      <textarea name="comment[text]"></textarea>
+    </div>
+
+    <input type="submit" value="Add Comment" class="ui inverted green button mini">
+  </form>
 </div>
 
 <% include ../partials/footer %>
