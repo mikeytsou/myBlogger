@@ -4,12 +4,12 @@
 <form action="/posts" method="POST" class="ui form" id="new-post-form">
   <div class="field">
     <label>Title:</label>
-    <input type="text" name="post[title]" placeholder="title">
+    <input type="text" maxlength="50" name="post[title]" placeholder="title">
   </div>
 
   <div class="field">
     <label>Description:</label>
-    <input type="text" maxlength="300" name="post[description]" placeholder="description">
+    <input type="text" maxlength="150" name="post[description]" placeholder="description">
   </div>
 
   <div class="field">

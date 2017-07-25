@@ -13,45 +13,45 @@
   <title>Welcome to myBlogger</title>
 </head>
 <body>
-  <div class="ui grid">
+  <nav class="ui grid">
     <div class="computer tablet only row">
-      <div class="ui fixed menu page grid">
-        <a href="/" class="item">myBlogger</a>
-        <% if (!currentUser) { -%>
-          <a href="/users/new" class="item">Register</a>
-          <a href="/sessions/new" class="item">Log In</a>
-        <% } else { -%>
-          <a href="/users/<%= currentUser.id %>" class="item"><%= currentUser.username %></a>
-          <a href="/posts/new" class="item">New Post</a>
+      <div class="ui fixed menu grid">
+        <a href="/" class="item"><i class="idea icon"></i>myBlogger</a>
+        <% if (!currentUser) { %>
           <div class="right menu">
-            <a href="/logout" class="item">Log Out</a>
+            <a href="/users/new" class="item"><i class="laptop icon"></i>Register</a>
+            <a href="/sessions/new" class="item"><i class="sign in icon"></i>Log In</a>
           </div>
-        <% } -%>
+        <% } else { %>
+          <a href="/users/<%= currentUser.id %>" class="item"><i class="user icon"></i><%= currentUser.username %></a>
+          <a href="/posts/new" class="item"><i class="write icon"></i>New Post</a>
+          <div class="right menu">
+            <a href="/logout" class="item"><i class="sign out icon"></i>Log Out</a>
+          </div>
+        <% } %>
       </div>
     </div>
 
     <div class="mobile only row">
-      <div class="ui fixed navbar menu">
-        <a href="" class="item">myBlogger</a>
+      <div class="ui fixed menu">
+        <a href="" class="item"><i class="idea icon"></i>myBlogger</a>
           <div class="right menu open">
-            <a href="" class="menu item">
-                <i class="content icon"></i>
-            </a>
+            <a href="" class="menu item"><i class="sidebar icon"></i></a>
           </div>
       </div>
 
-      <div class="ui vertical attached navbar menu">
-        <% if (!currentUser) { -%>
+      <div class="ui vertical attached menu">
+        <% if (!currentUser) { %>
           <a href="/users/new" class="item">Register</a>
           <a href="/sessions/new" class="item">Log In</a>
-        <% } else { -%>
+        <% } else { %>
           <a href="/users/<%= currentUser.id %>" class="item"><%= currentUser.username %></a>
           <a href="/posts/new" class="item">New Post</a>
           <a href="/logout" class="item">Log Out</a>
-        <% } -%>
+        <% } %>
       </div>
     </div>
-  </div>
+  </nav>
 
   <div class="ui main text container" id="main-container">
 

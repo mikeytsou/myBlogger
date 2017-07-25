@@ -10,9 +10,11 @@ const express = require("express");
 // ROUTES
       userRoutes = require("./routes/users")
       postRoutes = require("./routes/posts");
+      commentRoutes = require("./routes/comments");
 
 // APP CONFIG
 mongoose.connect("mongodb://localhost/my_blogger");
+app.locals.moment = require("moment");
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
@@ -40,6 +42,7 @@ app.use(function(req, res, next) {
 // ROUTES
 app.use(userRoutes);
 app.use(postRoutes);
+app.use(commentRoutes);
 
 // MISSING ROUTE
 app.get("*", function(req, res) {

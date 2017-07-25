@@ -4,12 +4,12 @@
 <form action="/posts/<%= post._id %>?_method=PUT" method="POST" class="ui form" id="edit-post-form">
   <div class="field">
     <label>Title:</label>
-    <input type="text" name="post[title]" value="<%= post.title %>">
+    <input type="text" maxlength="50" name="post[title]" value="<%= post.title %>">
   </div>
 
   <div class="field">
     <label>Description:</label>
-    <input type="text" name="post[description]" value="<%= post.description %>">
+    <input type="text" maxlength="150" name="post[description]" value="<%= post.description %>">
   </div>
 
   <div class="field">
