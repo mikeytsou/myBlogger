@@ -14,7 +14,7 @@ img {
   /*border: 1px dotted red;*/
 }
 
-#delete {
+#delete-button {
   display: inline;
 }
 
@@ -47,6 +47,10 @@ img {
   word-wrap: break-word;
   overflow: hidden;
   clear: both;
+}
+
+#comment-container {
+  margin: auto;
 }
 
 /*#copyright {

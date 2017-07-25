@@ -15,7 +15,7 @@
       <div class="meta">
         <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
 
-        <form id="delete" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+        <form id="delete-button" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
           <button class="ui inverted red mini right floated button">Delete</button>
         </form>
 
@@ -33,7 +33,7 @@
 
 <!--  -->
 
-<div class="ui minimal comments">
+<div class="ui minimal comments" id="comment-container">
   <h4 class="ui dividing header">Comments</h4>
 
   <% post.comments.forEach(function(comment) { %>
@@ -46,7 +46,7 @@
         <a href="/users/<%= comment.author.id %>" class="author"><%= comment.author.username %></a>
 
         <div class="metadata">
-          <span class="date"><%= post.createdAt.toDateString() %></span>
+          <span class="date"><%= moment(comment.createdAt).fromNow() %></span>
         </div>
 
         <div class="text">
@@ -61,7 +61,7 @@
 
   <form action="/posts/<%= post._id %>/comments" method="POST" class="ui reply form">
     <div class="field">
-      <textarea name="comment[text]"></textarea>
+      <textarea name="comment[text]" maxlength="500"></textarea>
     </div>
 
     <input type="submit" value="Add Comment" class="ui inverted green button mini">

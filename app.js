@@ -14,6 +14,7 @@ const express = require("express");
 
 // APP CONFIG
 mongoose.connect("mongodb://localhost/my_blogger");
+app.locals.moment = require("moment");
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));

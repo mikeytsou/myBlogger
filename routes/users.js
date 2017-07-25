@@ -21,6 +21,7 @@ router.post("/users", function(req, res) {
   const password = req.body.password;
   User.register(newUser, password, function(err, createdUser) {
     if (err) {
+      console.log(err);
       return res.redirect("/users/new");
     }
     passport.authenticate("local")(req, res, function() {
