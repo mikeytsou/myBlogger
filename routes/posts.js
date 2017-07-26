@@ -53,6 +53,7 @@ router.post("/posts", middleware.isLoggedIn, function(req, res) {
       res.redirect("/posts/new");
     } else {
       console.log(newPost);
+      req.
       res.redirect("/");
     }
   });
@@ -103,9 +104,10 @@ router.put("/posts/:id", middleware.checkPostOwnership, function(req, res) {
 router.delete("/posts/:id", middleware.checkPostOwnership, function(req, res) {
   Post.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
-      res.redirect("/");
+      res.redirect("/posts");
     } else {
-      res.redirect("/");
+      req.flash("success", "Post Deleted");
+      res.redirect("/posts");
     }
   });
 });
