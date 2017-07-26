@@ -25,7 +25,8 @@ router.post("/posts/:id/comments", middleware.isLoggedIn, function(req, res) {
           post.comments.push(comment);
           post.save();
           console.log(comment);
-          res.redirect(`/posts/${post._id}`);
+          res.render("partials/comment", {layout: false, comment: comment});
+          // res.redirect(`/posts/${post._id}`);
         }
       });
     }

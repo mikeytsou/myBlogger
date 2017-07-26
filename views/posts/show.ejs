@@ -33,34 +33,16 @@
 </div>
 
 <div class="ui minimal comments" id="comment-container">
-  <h4 class="ui dividing header">Comments</h4>
+  <h4 class="ui dividing header" id="comment-header">Comments</h4>
 
   <% post.comments.forEach(function(comment) { %>
-    <div class="comment">
-      <div class="avatar">
-        <img src="<%= comment.author.picture %>">
-      </div>
-
-      <div class="content">
-        <a href="/users/<%= comment.author.id %>" class="author"><%= comment.author.username %></a>
-
-        <div class="metadata">
-          <span class="date"><%= moment(comment.createdAt).fromNow() %></span>
-        </div>
-
-        <div class="text">
-          <p><%= comment.text %></p>
-        </div>
-      </div>
-
-
-    </div>
+    <% include ../partials/comment %>
   <% }) %>
 
 
-  <form action="/posts/<%= post._id %>/comments" method="POST" class="ui reply form">
+  <form action="/posts/<%= post._id %>/comments" method="POST" class="ui reply form" id="comment-form">
     <div class="field">
-      <textarea name="comment[text]" maxlength="500"></textarea>
+      <textarea id="comment-value" name="comment[text]" maxlength="500"></textarea>
     </div>
 
     <input type="submit" value="Add Comment" class="ui inverted green button mini">
