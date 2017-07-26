@@ -3,6 +3,7 @@ $(document).ready(function() {
   quillConfig();
   newPost();
   editPost();
+  newComment();
   hideFlashMessage();
 });
 
@@ -65,6 +66,31 @@ const editPost = function() {
 
     console.log("Submitted", $("#edit-post-form").serialize(), $("#edit-post-form").serializeArray());
     const $editData = $("#edit-post-form").serialize();
+  });
+}
+
+const newComment = function() {
+  $("#comment-container").on("submit", "#comment-form", function(event) {
+    event.preventDefault();
+    const $url = $(this).attr("action");
+    const $data = $(this).serialize();
+
+    $.ajax({
+      url: $url,
+      type: 'POST',
+      data: $data
+    })
+    .done(function(response) {
+      if ($("#comment-box").length <= 0) {
+        $("#comment-header").after(response);
+      } else {
+        $("#comment-container").children("#comment-box").last().append(response);
+      }
+      $("#comment-value").val("");
+    })
+    .fail(function() {
+      console.log("error");
+    });
   });
 }
 

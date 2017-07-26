@@ -6,7 +6,7 @@ const express = require("express");
       Post = require("../models/post");
 
 // CREATE
-router.post("/posts/:id/comments", function(req, res) {
+router.post("/posts/:id/comments", middleware.isLoggedIn, function(req, res) {
   Post.findById(req.params.id, function(err, post) {
     if (err) {
       console.log(err);
@@ -25,18 +25,12 @@ router.post("/posts/:id/comments", function(req, res) {
           post.comments.push(comment);
           post.save();
           console.log(comment);
-          res.redirect(`/posts/${post._id}`);
+          res.render("partials/comment", {layout: false, comment: comment});
+          // res.redirect(`/posts/${post._id}`);
         }
       });
     }
   });
 });
-
-// DESTROY
-router.delete("/posts/:id/comments", function(req, res) {
-
-});
-
-
 
 module.exports = router;
