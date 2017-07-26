@@ -1,5 +1,40 @@
 <% include ../partials/header %>
 
-<h1>Hello <%= user.username %></h1>
+
+<h3 id="profile-header"><%= user.username %>'s Profile</h3>
+
+<div class="ui vertically divided grid">
+  <div class="sixteen column row">
+
+    <div class="four wide column">
+      <div class="ui four column doubling stackable grid container">
+        <img id="image-border" src="<%= user.picture %>">
+
+        <p id="profile-name"><%= user.firstName %> <%= user.lastName %></p>
+      </div>
+    </div>
+
+    <div class="twelve wide column">
+      <div class="ui four column doubling stackable grid container">
+        <div class="ui divided items">
+          <% posts.forEach(function(post) { %>
+            <div class="item">
+              <div class="ui tiny image">
+                <% if (post.image) { %>
+                  <img id="image-border" src="<%= post.image %>">
+                <% } %>
+              </div>
+
+              <div class="middle aligned content">
+                <a href="/posts/<%= post._id %>"><%= post.title %></a> -
+                <span id="profile-date"><%= post.createdAt.toDateString() %></span>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% include ../partials/footer %>

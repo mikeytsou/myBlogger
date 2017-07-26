@@ -6,6 +6,7 @@ const express = require("express");
       LocalStrategy = require("passport-local");
       methodOverride = require("method-override");
       expressSanitizer = require("express-sanitizer");
+      flash = require("connect-flash");
       app = express();
 // ROUTES
       userRoutes = require("./routes/users")
@@ -19,6 +20,7 @@ app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.use(expressSanitizer());
+app.use(flash());
 app.set("view engine", "ejs");
 
 // PASSPORT CONFIG
@@ -36,6 +38,8 @@ passport.deserializeUser(User.deserializeUser());
 // HELPERS
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
   next();
 });
 

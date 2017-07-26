@@ -1,6 +1,5 @@
 <% include ../partials/header %>
 
-
 <div class="ui items">
   <div class="padded item">
     <div class="image">
@@ -15,11 +14,13 @@
       <div class="meta">
         <span><%= post.createdAt.toDateString() %> by <a href="/users/<%= post.author.id %>"><u><%= post.author.username %></u></a></span>
 
-        <form id="delete-button" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-          <button class="ui inverted red mini right floated button">Delete</button>
-        </form>
+        <% if (currentUser && post.author.id.equals(currentUser._id)) { %>
+          <form id="delete-button" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+            <button class="ui inverted red mini right floated button">Delete</button>
+          </form>
 
-        <a class="ui inverted orange mini right floated button" href="/posts/<%= post._id %>/edit">Edit Post</a>
+          <a class="ui inverted orange mini right floated button" href="/posts/<%= post._id %>/edit">Edit Post</a>
+        <% } %>
       </div>
 
       <div class="description">
@@ -30,8 +31,6 @@
 
   <div id="post-body"><%- post.body %></div>
 </div>
-
-<!--  -->
 
 <div class="ui minimal comments" id="comment-container">
   <h4 class="ui dividing header">Comments</h4>

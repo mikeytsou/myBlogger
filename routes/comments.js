@@ -15,7 +15,8 @@ router.post("/posts/:id/comments", function(req, res) {
       Comment.create(req.body.comment, function(err, comment) {
         if (err) {
           console.log(err);
-          res.redirect("/");
+          req.flash("error", "Comment text is required");
+          res.redirect(`/posts/${post._id}`);
         } else {
           comment.author.id = req.user._id;
           comment.author.username = req.user.username;
@@ -31,7 +32,10 @@ router.post("/posts/:id/comments", function(req, res) {
   });
 });
 
+// DESTROY
+router.delete("/posts/:id/comments", function(req, res) {
 
+});
 
 
 
