@@ -53,5 +53,19 @@
     </div>
   </nav>
 
+  <div class="ui main text container" id="flash-message">
+    <% if (error && error.length > 0) { %>
+      <div class="ui negative message mini">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <% if (success && success.length > 0) { %>
+      <div class="ui success message mini">
+        <%= success %>
+      </div>
+    <% } %>
+  </div>
+
   <div class="ui main text container" id="main-container">
 

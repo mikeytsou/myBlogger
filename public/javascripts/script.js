@@ -3,6 +3,7 @@ $(document).ready(function() {
   quillConfig();
   newPost();
   editPost();
+  hideFlashMessage();
 });
 
 // responsive menu for mobile
@@ -65,4 +66,8 @@ const editPost = function() {
     console.log("Submitted", $("#edit-post-form").serialize(), $("#edit-post-form").serializeArray());
     const $editData = $("#edit-post-form").serialize();
   });
+}
+
+const hideFlashMessage = function() {
+  $("#flash-message").show().delay(5000).fadeOut();
 }

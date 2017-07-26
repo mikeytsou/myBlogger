@@ -22,11 +22,12 @@ router.post("/users", function(req, res) {
   User.register(newUser, password, function(err, createdUser) {
     if (err) {
       console.log(err);
+      req.flash("error", err.message);
       return res.redirect("/users/new");
     }
     passport.authenticate("local")(req, res, function() {
-      // req.flash("success", `Hello ${fill this in}!`);
-      res.redirect("/");
+      req.flash("success", `Hello ${createdUser.username}!`);
+      res.redirect(`/users/${req.user._id}`);
     });
   });
 });
@@ -55,18 +56,18 @@ router.get("/sessions/new", function(req, res) {
 
 // CREATE - session
 router.post("/sessions", passport.authenticate("local", {
-  failureRedirect: "/",
-  // failureFlash: true
+  failureRedirect: "/sessions/new",
+  failureFlash: true
 }), function(req, res) {
-  // req.flash("success", `Hello ${fill this in}!`);
-  res.redirect("/");
+  req.flash("success", `Hello ${req.user.username}!`);
+  res.redirect(`/users/${req.user._id}`);
 });
 
 // LOGOUT
 router.get("/logout", function(req, res) {
   req.logout();
-  res.redirect("/");
+  req.flash("success", "Logged out");
+  res.redirect("/posts");
 });
-
 
 module.exports = router;
