@@ -39,7 +39,7 @@ router.get("/users/:id", function(req, res) {
       console.log(err);
       res.redirect("/");
     }
-    Post.find().where("author.id").equals(foundUser._id).exec(function(err, posts) {
+    Post.find({}).sort("-createdAt").where("author.id").equals(foundUser._id).exec(function(err, posts) {
       if (err) {
         console.log(err);
         res.redirect("/");

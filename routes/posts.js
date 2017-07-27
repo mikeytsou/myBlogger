@@ -12,9 +12,9 @@ router.get("/", function(req, res) {
 
 // INDEX
 router.get("/posts", function(req, res) {
-  Post.find({}, function(err, posts) {
+  Post.find({}).sort("-createdAt").exec(function(err, posts) {
     if (err) {
-      console.log(err);
+    console.log(err);
     } else {
       res.render("posts/index", {posts: posts});
     }

@@ -39,14 +39,16 @@
     <% include ../partials/comment %>
   <% }) %>
 
+  <% if (currentUser) { %>
+    <form action="/posts/<%= post._id %>/comments" method="POST" class="ui reply form" id="comment-form">
+      <div class="field">
+        <textarea id="comment-value" name="comment[text]" maxlength="500"></textarea>
+      </div>
 
-  <form action="/posts/<%= post._id %>/comments" method="POST" class="ui reply form" id="comment-form">
-    <div class="field">
-      <textarea id="comment-value" name="comment[text]" maxlength="500"></textarea>
-    </div>
+      <input type="submit" value="Add Comment" class="ui inverted green button mini">
+    </form>
+  <% } %>
 
-    <input type="submit" value="Add Comment" class="ui inverted green button mini">
-  </form>
 </div>
 
 <% include ../partials/footer %>
