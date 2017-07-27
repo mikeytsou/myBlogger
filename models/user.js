@@ -10,12 +10,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  picture: {
+    type: String,
+    required: true
+  },
   username: {
     type: String,
     required: true
   },
-  password: String,
-  picture: String
+  password: String
 });
 
 userSchema.plugin(passportLocalMongoose);
