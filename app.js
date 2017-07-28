@@ -14,7 +14,8 @@ const express = require("express");
       commentRoutes = require("./routes/comments");
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost/my_blogger");
+// mongoose.connect("mongodb://localhost/my_blogger");
+mongoose.connect("mongodb://mtsou:mybloggerpassword@ds127163.mlab.com:27163/my_blogger");
 app.locals.moment = require("moment");
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({extended: true}));
