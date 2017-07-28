@@ -10,7 +10,7 @@ router.post("/posts/:id/comments", middleware.isLoggedIn, function(req, res) {
   Post.findById(req.params.id, function(err, post) {
     if (err) {
       console.log(err);
-      res.redirect("/");
+      res.redirect("/posts");
     } else {
       Comment.create(req.body.comment, function(err, comment) {
         if (err) {
