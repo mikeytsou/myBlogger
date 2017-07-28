@@ -55,6 +55,6 @@ app.get("*", function(req, res) {
 });
 
 // SERVER
-app.listen(3000, function() {
+app.listen(proccess.env.PORT || 3000, function() {
   console.log("CONNECTED TO PORT 3000");
 });
