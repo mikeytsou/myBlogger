@@ -54,7 +54,7 @@ router.post("/posts", middleware.isLoggedIn, function(req, res) {
     } else {
       console.log(newPost);
       req.
-      res.redirect("/");
+      res.redirect("/posts");
     }
   });
 });
@@ -64,7 +64,7 @@ router.get("/posts/:id", function(req, res) {
   Post.findById(req.params.id).populate("comments").exec(function(err, foundPost) {
     if (err) {
       console.log(err);
-      res.redirect("/");
+      res.redirect("/posts");
     } else {
       res.render("posts/show", {post: foundPost});
     }
@@ -76,7 +76,7 @@ router.get("/posts/:id/edit", middleware.checkPostOwnership, function(req, res) 
   Post.findById(req.params.id, function(err, foundPost) {
     if (err) {
       console.log(err);
-      res.redirect("/");
+      res.redirect("/posts");
     } else {
       res.render("posts/edit", {post: foundPost});
     }

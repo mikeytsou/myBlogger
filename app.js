@@ -14,7 +14,8 @@ const express = require("express");
       commentRoutes = require("./routes/comments");
 
 // APP CONFIG
-mongoose.connect("mongodb://localhost/my_blogger");
+// mongoose.connect("mongodb://localhost/my_blogger");
+mongoose.connect("mongodb://mtsou:mybloggerpassword@ds127163.mlab.com:27163/my_blogger");
 app.locals.moment = require("moment");
 app.use(express.static(`${__dirname}/public`));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -54,6 +55,6 @@ app.get("*", function(req, res) {
 });
 
 // SERVER
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function() {
   console.log("CONNECTED TO PORT 3000");
 });
