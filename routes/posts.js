@@ -5,6 +5,11 @@ const express = require("express");
 // MODELS
       Post = require("../models/post");
 
+// ROOT
+router.get("/", function(req, res) {
+  res.redirect("/posts");
+});
+
 // INDEX
 router.get("/posts", function(req, res) {
   Post.find({}).sort("-createdAt").exec(function(err, posts) {
